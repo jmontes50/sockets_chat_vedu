@@ -15,6 +15,8 @@ import { usuario_router } from "../routes/usuario";
 import documentacion from "../../documentacion.json";
 // sirve para utilizar las variables del archivo .env
 require("dotenv").config();
+let cors = require('cors');    
+
 
 export class Server {
   constructor() {
@@ -25,7 +27,8 @@ export class Server {
     this.httpServer = new createServer(this.app);
     this.io = new socketio(this.httpServer, { cors: { origin: "*" } });
     this.bodyParser();
-    this.CORS();
+    // this.CORS();
+    this.app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
     this.rutas();
     this.escucharSockets();
     if (typeof Server.instance === "object") {
