@@ -28,7 +28,7 @@ export class Server {
     this.io = new socketio(this.httpServer, { cors: { origin: "*" } });
     this.bodyParser();
     // this.CORS();
-    this.app.use(cors()));
+    this.app.use(cors());
     this.rutas();
     this.escucharSockets();
     if (typeof Server.instance === "object") {
